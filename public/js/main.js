@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 function addToDos(todos){
     todos.forEach(function(todo){
-        var newToDo = $('<li>' + todo.name + '</li>');
+        var newToDo = $('<li class="task">' + todo.name + '</li>');
         $(".list").append(newToDo);
     });
 }
