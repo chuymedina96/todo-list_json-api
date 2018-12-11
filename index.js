@@ -7,11 +7,13 @@ var express     = require("express"),
 var todoRoutes  = require('./routes/todo.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true} ));
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
+
 
 app.get("/", function(req,res){
-    res.json('{ message: "hi from js object"}');
+    res.sendFile("index.html");
 });
-
 app.use('/api/todos', todoRoutes);
 
 
