@@ -20,6 +20,15 @@ exports.newTodos = function(req, res){
         res.send(err);
     });
 };
+ exports.getOneTodo = function(req,res){
+    db.Todo.findById(req.params.todoId)
+    .then(function(foundToDo){
+        res.json(foundToDo);
+    })
+    .catch(function(err){
+        res.send(err);
+    });
+};
 
 exports.updatedTodos = function(req,res){
     db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, { new: true}) //responds with old data before it was updated, unless specified by the new word
@@ -40,5 +49,5 @@ exports.deleteTodos = function(req,res){
         res.send(err);
     });
 };
-    
+
 module.exports = exports;
