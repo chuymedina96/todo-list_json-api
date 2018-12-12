@@ -2,7 +2,7 @@
 $(document).ready(function(){
     var url = "/api/todos";
     $.getJSON(url)
-    .then(addToDos) ;
+    .then(addToDos);
     $("#todoInput").keypress(function(event){
         if(event.which == 13){
             createToDo();
@@ -16,15 +16,32 @@ $(document).ready(function(){
 
 function addToDos(todos){
     todos.forEach(function(todo){
-        var newToDo = $('<li class="task">' + todo.name + todo.completed + '</li>');
-        if(todo.completed){
-            newToDo.addClass("done");
-        }
-        $(".list").append(newToDo);
+        addTodo(todo);
     });
 }
+
+
+function addTodo(todo){
+    var newToDo = $('<li class="task">' + todo.name + todo.completed + '</li>');
+    if(todo.completed){
+        newToDo.addClass("done");
+    }
+    $(".list").append(newToDo);
+}
+
+
 function createToDo(){
-    usrInput = $("#todoInput").val();
-    console.log(usrInput);
+    var usrInput = $("#todoInput").val();
+    $.post("/api/todos", {name: usrInput})
+    .then(function(newTodo){
+        console.log(newTodo)
+    })
+    .catch(function(err){
+        console.log(err);
+    })
     //$.post(url, {name: usrInput });
+}
+
+function deleteToDo(){
+    
 }
