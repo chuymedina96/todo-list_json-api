@@ -2,7 +2,7 @@
 $(document).ready(function(){
     var url = "/api/todos";
     $.getJSON(url)
-    .then(addToDos)
+    .then(addToDos) 
     .catch(function(err){
         console.log(err);
     });
