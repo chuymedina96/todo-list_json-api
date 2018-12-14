@@ -10,6 +10,8 @@ exports.getToDos = function(req, res){
     });
 };
 
+
+
 exports.newTodos = function(req, res){
     console.log(req.body);
     db.Todo.create(req.body)
@@ -20,6 +22,9 @@ exports.newTodos = function(req, res){
         res.send(err);
     });
 };
+
+
+
  exports.getOneTodo = function(req,res){
     db.Todo.findById(req.params.todoId)
     .then(function(foundToDo){
@@ -29,6 +34,8 @@ exports.newTodos = function(req, res){
         res.send(err);
     });
 };
+
+
 
 exports.updatedTodos = function(req,res){
     db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, { new: true}) //responds with old data before it was updated, unless specified by the new word
@@ -40,6 +47,8 @@ exports.updatedTodos = function(req,res){
     });
 };
 
+
+
 exports.deleteTodos = function(req,res){
     db.Todo.remove({_id: req.params.todoId})
     .then(function(deletedToDo){
@@ -49,5 +58,7 @@ exports.deleteTodos = function(req,res){
         res.send(err);
     });
 };
+
+
 
 module.exports = exports;
