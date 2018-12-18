@@ -25,7 +25,7 @@ exports.newTodos = function(req, res){
 
 
 
- exports.getOneTodo = function(req,res){
+exports.getOneTodo = function(req,res){
     db.Todo.findById(req.params.todoId)
     .then(function(foundToDo){
         res.json(foundToDo);
